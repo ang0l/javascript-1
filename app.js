@@ -1,55 +1,29 @@
 /**
  * Angol. 2024.07.03
- * Управление потоком
- * Упражнение - Проверка робота (25)
+ * Булева логика
+ * Операторы с другими типами (28)
  */
 
-// Методом prompt получите ответ пользователя
-// на запрос "Сколько будет 7 + или - 15?". Если ответ верен
-// выведите в консоле "Успех", если нет - "Вы робот!",
-// а ели он введет "Я не робот", то тоже "Успех".
+// Выведет первый операнд если он true
+console.log('Вася' || 'Олег'); // Вася
+console.log(false || 'Олег'); // Олег
+console.log('Вася' || false); // Вася
+console.log(false || false); // false
 
-// Мой вариант решения:
-// let answer = prompt('Сколько будет 7 + или - 15?');
-// let result;
-// 
-// switch (true) {
-//     case answer == -8:
-//     case answer == 22:
-//     case answer == 'Я не робот':
-//         result = 'Успех';
-//         break;
-//     default:
-//         result = 'Вы робот';
-// }
-//
-// console.log(result);
+// Выведет второй операнд если первый true
+console.log('Вася' && 'Олег'); // Олег
 
-// Решение преподавателя:
-// Вариант 1:
-const res = prompt('Сколько будет 7 + или - 15?');
+// Веведет false если какой-нибудь операнд - false
+console.log(false && 'Олег'); // false
+console.log('Вася' && false); // false
+console.log(false || false); // false
 
-switch(true) {
-    case res === 'Я не робот':
-    case Number(res) === 22:
-    case Number(res) === -8:
-        console.log('Успех');
-        break;
-    default:
-        console.log('Вы робот');
-}
+let a;
+const userName = a || 'Петя';
+// Т.к. переменная a не определена, то выведет 'Петя'
+// если переменную a определить, то выведет значение переменной a
+console.log(userName);
 
-// Вариант 2:
-if (res === 'Я не робот' ) {
-    console.log('Успех');
-} else {
-    const resNum = Number(res);
-    switch(resNum) {
-        case 22:
-        case -8:
-            console.log('Успех');
-            break;
-        default:
-            console.log('Вы робот!');
-    }
-}
+const isAdmin = true;
+const fileName = isAdmin && 'file.mp4';
+console.log(fileName);
