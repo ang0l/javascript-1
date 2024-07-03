@@ -1,34 +1,60 @@
 /**
  * Angol. 2024.07.03
  * Управление потоком
- * Операторы равенства (22)
+ * Switch (23)
  */
 
-const secretNumber = '7';
+const role = 'manager';
 
-if (secretNumber === 7) {
-    console.log('Угадал строго');
+// Сравнение с if else
+// if (role === 'manager') {
+//     console.log('Менеджер');
+// } else if (role === 'admin') {
+//     console.log('Администратор');
+// } else if (role === 'ceo') {
+//     console.log('СЕО');
+// } else {
+//     console.log('Мы тебя не знаем');
+// }
+
+// сам switch
+switch (role) {
+    case 'manager': // role === 'manager' (именно строгое равенство)
+        console.log('Менеджер');
+        break;
+    case 'admin':
+        console.log('Администратор');
+        break;
+    case 'ceo':
+        console.log('СЕО');
+        break;
+    default:
+        console.log('Мы тебя не знаем');
 }
 
-if (secretNumber == 7) {
-    console.log('Угадал не строго');
-}
-//////////////
-// Желательно применять строгое равенство всегда
-// К этому, дополнительно, необходимо применить приведение типов
-// строка кода ниже:
-/////////////
-if (Number(secretNumber) === 7) {
-    console.log('Угадал строго с приведением типов');
-}
-
-const q = Number(prompt('Введите число'));
-if (q === 7) {
-    console.log('Угадал!!!');
+// Объединение кейсов
+switch (role) {
+    case 'manager':
+    case 'admin':
+        console.log('Не руководитель');
+        break;
+    case 'ceo':
+        console.log('Руководитель');
+        break;
+    default:
+        console.log('Мы тебя не знаем');
 }
 
-////////////
-// Итог занятия:
-// 1. Использовать всегда строгое равенство.
-// 2. В обязательном порядке приводить тпиы при проверке на равенство.
-////////////
+const num = 1;
+
+// Проверка на разные сравнения
+switch(true) {
+    case num > 0: // true === num > 0
+        console.log('Положительный');
+        break;
+    case num < 0: // true === num < 0
+        console.log('Отрицательный');
+        break;
+    default:
+        console.log('Ноль!');
+}
