@@ -1,68 +1,38 @@
 /**
  * Angol. 2024.07.03
- * Функции
- * Упражнение - Кредит на MacBook
+ * Массивы
+ * Знакомство с массивами
  */
 
-// Пользователь:
-// - Возраст
-// - Наличие работы
-// - Деньги
-// Нужно проверить может ли он купить новый MacBook за 2000$?
-// Он может брать не только свои деньги, но и взять кредит.
-// Ему дадут 500$, только если ему больше 24-х лет и он
-// имеет работу, 100$ если ему просто больше 24-х лет и 0 в
-// ином случае.
-// Напишите функцию, которая принимает данные пользователя
-// и товара и возвращает true или false;
+// Переменные
+const role1 = 'admin';
+const role2 = 'user';
+const role3 = 'supetuser';
 
-// // Мое решение
-// let age = 24;
-// let isWork = true;
-// let cach = 2200;
-// const priceMacBook = 2000;
+// Массивы
+const roles = ['admin', 'user', 'superuser'];
+const userInfo = ['Аня', 25];
 
-// function creditOnMacBook(age, work) {
-//     if (age > 24 && work) {
-//         return 500;
-//     } else if (age > 24) {
-//         return 100;
-//     }
-//     return 0;
-// }
+// Вывод массива и элемента масива
+console.log(roles);
+console.log(roles[0]);
 
-// function canBuyMacBook (age, work, cach, priceMacBook) {
+// вывд последнего элемента массива
+console.log(roles.length);
+console.log(roles[roles.length - 1]);
 
-//     let cachAndCredit = cach + creditOnMacBook(age, work);
-//     // console.log(cachAndCredit);
+// вывод элемента массива методом at
+console.log(roles.at(0));
+// вывод последнего элемента массива методом at
+console.log(roles.at(-1));
 
-//     if (priceMacBook <= cachAndCredit) {
-//         return true;
-//     }
-//     return false;
+const usersAge = [2040 - 2022, 20 - '6', 10 > 0 ? 5 : 0];
+console.log(usersAge);
 
-// }
-// console.log(canBuyMacBook(age, isWork, cach, priceMacBook));
+const userNames = new Array('Вася', 'Петя', 'Катя');
+console.log(userNames);
 
-// Решение преподавателя.
-function computeCredit(age, hasJob = false) {
-    switch (true) {
-        case age > 24 && hasJob:
-            return 500;
-        case age > 24:
-            return 100;
-        default:
-            return 0;
-    }
+function square(el) {
+    return el * el;
 }
-
-// агрументы по умольчанию необходимо устанавливать в конце
-// иначе не работает и нет, соответственно, смысла
-// function canBuy(productPrice, age, hasJob = false, money) {
-function canBuy(productPrice, age, money, hasJob = false) {
-    const creditMoney = computeCredit(age, hasJob);
-    return productPrice <= money + creditMoney;
-}
-console.log(canBuy(2000, 25, 1900, false));
-
-// почти тоже самое, но у преподавателя более красивее
+console.log(square([1, 2, 3])); // NaN
