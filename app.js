@@ -1,38 +1,28 @@
 /**
  * Angol. 2024.07.03
  * Массивы
- * Управление элементами массва
+ * Поиск элемента
  */
 
-const users = ['Аня', 'Вика', 'Катя'];
-console.log(users);
-// массив-константа имеет возможность изменить элемент массива.
-// но не можем изменить всю константу users, потому что она "константа".
-users[2] = 'Кристина';
-console.log(users);
+const roles = ['user', 'admin', 'manager', 'admin'];
 
-users[3] = 'Никита';
-console.log(users);
+const elIndex = roles.indexOf('admin'); // метод inexOf ищет первое вхождение индекса
+console.log(elIndex); // 1
 
-// получится 6 элементо массива.
-// JS компенсирует элемент 4 пустым элементом
-users[5] = 'Евгенй';
-console.log(users);
+const elIndex2 = roles.indexOf('superuser'); // метод inexOf ищет первое вхождение индекса
+console.log(elIndex2); // -1 - индек не найден
 
-// добавляем элемент массива
-const arrLenght = users.push('Андрей'); // добавляет элемент и возвращает длину массива
-console.log(users);
-console.log(arrLenght);
+// условие
+if (roles.indexOf('admin') >= 0) {
+    console.log('Доступ есть');
+}
 
-// добавляем элемент в начало массива со сдвигом всех элементов
-users.unshift('Вася');
-console.log(users);
+// includes возвращает булево
+console.log(roles.includes('admin')); // true
+console.log(roles.includes('superuser')); // false
 
-// удаляем элементы массива
-const el = users.pop(); // удаляет последний элемент массива и возвращает удаленный элемент
-console.log(users);
-console.log(el);
+// условие
+if (roles.includes('admin')) {
+    console.log('Доступ есть');
+}
 
-const el2 = users.shift(); // удаляет первый элемент массива и возвращает удаленный элемент, а так же смещает все элементы массива вперед
-console.log(users);
-console.log(el2);
