@@ -1,29 +1,16 @@
 /**
  * Angol. 2024.07.03
  * Функции
- * Стрелочные функции (33)
+ * Упражнение - Упрощение функции (34)
  */
 
-// Обычная функция
-function powerOfTwo(num) {
-    return num * num;
+// Переписать функцию в стрелочную
+function toPower(num, power) {
+    const res = num ** power;
+    return res;
 }
-console.log(powerOfTwo(5));
+console.log(toPower(2, 3));
 
-// Стрелочная функция в одну строку
-const poft = (num) => num * num;
-console.log(poft(6));
-
-// стрелочная функция в несколько строк с одним аргументом
-const poft1 = num => {
-    console.log(num);
-    return num * num;
-}
-console.log(poft1(7));
-
-// стрелочная функция в несколько строк с несколькими агрументами
-const poft2 = (num, num2) => {
-    console.log(num);
-    return num * num2;
-}
-console.log(poft2(7, 3));
+// Мое решение. Совпадает с решением Преподавателя
+const toPowerArrow = (num, power) => num ** power;
+console.log(toPowerArrow(2, 4));
