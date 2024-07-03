@@ -1,43 +1,23 @@
 /**
  * Angol 2024.07.02
  * Основы
- * Операторы присваивания и сравнения (13)
+ * Порядок вычислений (14)
  *
 */
 
-// Базовые арифмитические операторы
-const width = 10;
-const height = 5;
-const space = width * height; // Оператор умножения
-const newWidth = width - 4; // Оператор вычитания
-const newWidth2 = width + 4; // Оператор сложения
-const division = newWidth / newWidth2; // Оператор деления
-const volume = 2 ** 3; // Оператор стемени (2 в степени 3)
+const isSuited = 100 - 10 > 90 - 5;
+console.log(isSuited);
 
-console.log(volume);
+// 100 -(12) 10 >(10) 90 -(12) 5
 
-// Строки (операции конкатенации - сложения строк)
-const city = 'Москва';
-const street = 'Новослободская';
+//const a = 6 + 10 / 2; // 11
+const  a = (6 + 10) / 2; // 8
+console.log(a);
 
-console.log(city + ', ' + street + ', ' + 5);
+let b;
+let c;
 
-// Операторы присваивания
-let age = 18 + 5; // Это оператор присваивания
-age += 2; // Короткая запись age = age + 2
-age -= 3; // Короткая запись age = age - 2
-age *= 2; // Короткая запись age = age * 2
-age /= 2; // Короткая запись age = age / 2
+c = b = 100 + 50;
 
-age++; // Короткая запись age = age + 1
-age--; // Короткая запись age = age - 1
-
-console.log(age);
-
-// Операторы сравнения
-const vasia = 20;
-console.log(age > vasia); // больше
-console.log(age >= vasia); // больше либо равно
-console.log(age < vasia); // меньше
-console.log(age <= vasia); // меньше либо равно
-console.log(age == vasia); // равно
+console.log(c);
+console.log(b);
