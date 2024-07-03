@@ -1,16 +1,14 @@
 /**
  * Angol. 2024.07.03
  * Функции
- * Упражнение - Упрощение функции (34)
+ * Параметры по умолчанию (35)
  */
 
-// Переписать функцию в стрелочную
-function toPower(num, power) {
+function toPower(num, power = 2) {
+    // console.log(typeof power); // Проверка типа power
+    // const power2 = power ?? 2;
     const res = num ** power;
     return res;
 }
 console.log(toPower(2, 3));
-
-// Мое решение. Совпадает с решением Преподавателя
-const toPowerArrow = (num, power) => num ** power;
-console.log(toPowerArrow(2, 4));
+console.log(toPower(2));
