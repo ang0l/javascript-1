@@ -1,45 +1,33 @@
 /**
  * Angol. 2024.07.03
- * Булева логика
- * Упражнение - Проверка прав (30)
+ * Функции
+ * Введение в функции (31)
  */
 
-// Пользователь хочет приобрести игру в магазине
-// Он может это сделать только если:
-// - Его баланс больше 1000 (balance)
-// или число бонусов больше 100 (bonusBalance)
-// - Он не забанен (isBanned)
-// - Игра не куплена (isExist)
-// - Игра в продаже (isSalling)
-// Напишите условие для покупки и выведите в консоль
-// результат
+function logName() {
+    console.log(`Мое имя - Андрей`);
+}
 
-// Мое решение:
-// // Данные
-// let balance = 1001;
-// let bonusBalance = 101;
-// let isBanned = false;
-// let isExist = false;
-// let isSalling = true;
+const a = logName();
+console.log(typeof a); // undefined
 
-// // Расчет
-// let result = (balance > 1000 || bonusBalance > 100) && !isBanned && !isExist && isSalling;
+function logNameF(name, surName) {
+    console.log(`Мое имя - ${name} ${surName}`);
+}
 
-// // Результат
-// console.log(result ? 'Пользователь может купить игру' : 'Пользователь не може купить игру');
+logNameF('Андрей', 'Головушкин');
 
-// Решение преподавателя:
-const balance = 1200;
-const bonusBalance = 90;
-const isBanned = false;
-const isExist = false;
-const isSalling = true;
+// Расчет депозита
+// function countDepositSum(depositInUSD, month, rate) {
+//     const sum = depositInUSD * (1 + rate / 12) ** month;
+//     return sum;
+// }
+// Укоротим функцию
+function countDepositSum(depositInUSD, month, rate) {
+    return depositInUSD * (1 + rate / 12) ** month;
+}
 
-const canBuy = (balance > 1000 || bonusBalance > 100)
-    && !isBanned
-    && !isExist
-    && isSalling;
+const example1 = countDepositSum(1000, 24, 0.12);
+console.log(example1);
 
-console.log(`Могу купить игру ${canBuy ? 'Да' : 'Нет'}`);
-
-// Почти тоже самое.
+console.log(countDepositSum(1000, 48, 0.1));
