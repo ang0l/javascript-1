@@ -1,38 +1,38 @@
 /**
  * Angol. 2024.07.03
  * Массивы
- * Знакомство с массивами
+ * Управление элементами массва
  */
 
-// Переменные
-const role1 = 'admin';
-const role2 = 'user';
-const role3 = 'supetuser';
+const users = ['Аня', 'Вика', 'Катя'];
+console.log(users);
+// массив-константа имеет возможность изменить элемент массива.
+// но не можем изменить всю константу users, потому что она "константа".
+users[2] = 'Кристина';
+console.log(users);
 
-// Массивы
-const roles = ['admin', 'user', 'superuser'];
-const userInfo = ['Аня', 25];
+users[3] = 'Никита';
+console.log(users);
 
-// Вывод массива и элемента масива
-console.log(roles);
-console.log(roles[0]);
+// получится 6 элементо массива.
+// JS компенсирует элемент 4 пустым элементом
+users[5] = 'Евгенй';
+console.log(users);
 
-// вывд последнего элемента массива
-console.log(roles.length);
-console.log(roles[roles.length - 1]);
+// добавляем элемент массива
+const arrLenght = users.push('Андрей'); // добавляет элемент и возвращает длину массива
+console.log(users);
+console.log(arrLenght);
 
-// вывод элемента массива методом at
-console.log(roles.at(0));
-// вывод последнего элемента массива методом at
-console.log(roles.at(-1));
+// добавляем элемент в начало массива со сдвигом всех элементов
+users.unshift('Вася');
+console.log(users);
 
-const usersAge = [2040 - 2022, 20 - '6', 10 > 0 ? 5 : 0];
-console.log(usersAge);
+// удаляем элементы массива
+const el = users.pop(); // удаляет последний элемент массива и возвращает удаленный элемент
+console.log(users);
+console.log(el);
 
-const userNames = new Array('Вася', 'Петя', 'Катя');
-console.log(userNames);
-
-function square(el) {
-    return el * el;
-}
-console.log(square([1, 2, 3])); // NaN
+const el2 = users.shift(); // удаляет первый элемент массива и возвращает удаленный элемент, а так же смещает все элементы массива вперед
+console.log(users);
+console.log(el2);
