@@ -1,20 +1,29 @@
 /**
  * Angol. 2024.07.03
  * Функции
- * Анонимные функции (32)
+ * Стрелочные функции (33)
  */
 
-// Такую функцию можно объявить после вызова. Она сработает.
-// "Всплытие".
+// Обычная функция
 function powerOfTwo(num) {
     return num * num;
 }
 console.log(powerOfTwo(5));
 
-// Анонимную функцию, помещенную в переменную/константу
-// необходимо сначала объявить, т.к. она в переменной/константе
-// без "Всплытия"
-const poft = function (num) {
+// Стрелочная функция в одну строку
+const poft = (num) => num * num;
+console.log(poft(6));
+
+// стрелочная функция в несколько строк с одним аргументом
+const poft1 = num => {
+    console.log(num);
     return num * num;
 }
-console.log(poft(6));
+console.log(poft1(7));
+
+// стрелочная функция в несколько строк с несколькими агрументами
+const poft2 = (num, num2) => {
+    console.log(num);
+    return num * num2;
+}
+console.log(poft2(7, 3));
