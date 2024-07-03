@@ -1,22 +1,27 @@
 /**
  * Angol 2024.07.02
  * Основы
- * Шаблонные строки (17)
+ * Преобразование типов (18)
  */
 
-const projectName = 'Сайт магазина';
-const price = 2000;
-const author = 'Василий Пупкин';
+const age = '18';
+// console.log(age + 5); // 185
+console.log(Number(age) + 5); // 23
+console.log(age - 3); // 15
 
-const template = author + ' заказал ' + projectName + ' по цене ' + price + '$';
-console.log(template);
+const userName = 'Вася';
+console.log(Number(userName) + 5); // NaN
+console.log(typeof NaN); // number
 
-const template2 = `${author} заказал ${projectName} по цене ${price}$`;
-console.log(template2);
+console.log(String(4) + 7); // 47
+console.log(Boolean(1)); // true (все числа, которые не являются нулю - true)
+console.log(Boolean(0)); // false
 
-const template3 = 'Проект \n' + 'Цена: ' + price + '$';
-console.log(template3);
+console.log(Boolean('fdskl')); // true
+console.log(Boolean('')); // false
 
-const template4 = `Проект
-Цена: ${price}$`;
-console.log(template4);
+console.log(Boolean('') + 10); // 10 (false - 0 плюс 10 равно 10)
+console.log(true + 2); // 3 (true - 1 плюс 2 равно 3)
+
+const a = 2 + '10'; // конкатенация = 210
+console.log(a - 10); // 210 - 10 = 200
