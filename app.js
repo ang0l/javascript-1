@@ -1,23 +1,24 @@
 /**
  * Angol 2024.07.02
  * Основы
- * Порядок вычислений (14)
- *
-*/
+ * Типы данных (15)
+ */
 
-const isSuited = 100 - 10 > 90 - 5;
-console.log(isSuited);
+let a = 5;
+let b = 5.6;
+console.log(typeof a); // number
+console.log(typeof b); // number
 
-// 100 -(12) 10 >(10) 90 -(12) 5
+a = 'Строка';
+console.log(typeof a); // string
 
-//const a = 6 + 10 / 2; // 11
-const  a = (6 + 10) / 2; // 8
-console.log(a);
+let isAdmin = false;
+console.log(typeof isAdmin); // boolean
 
-let b;
 let c;
+console.log(typeof c);
+c = 5;
+console.log(typeof c);
 
-c = b = 100 + 50;
-
-console.log(c);
-console.log(b);
+let d = null;
+console.log(typeof d);
