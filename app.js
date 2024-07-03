@@ -1,24 +1,24 @@
 /**
  * Angol 2024.07.02
  * Основы
- * Типы данных (15)
+ * Упражнение (16)
  */
+// Ваша часовая ставка $80 и вы готовы работать не
+// более 5 часов в день в неделю (кроме выходных).
+// К вам приходит заказчик и предлагает заказ на 40
+// часов работы.
+// Сейчас понедельник.
+// Вы должны уехать через 11 дней.
+// Выведите в консоль:
+// - Boolean переменную успеете л вы взяться за работу
+// - Сколько вы за нее попросили?
 
-let a = 5;
-let b = 5.6;
-console.log(typeof a); // number
-console.log(typeof b); // number
+// Результат препрдавателя
+// Данные
+const payRateUSD = 80;
+const projectHours = 40;
+const availableHours = (11 - 2) * 5; // Количество дней - выходной * часы
 
-a = 'Строка';
-console.log(typeof a); // string
-
-let isAdmin = false;
-console.log(typeof isAdmin); // boolean
-
-let c;
-console.log(typeof c);
-c = 5;
-console.log(typeof c);
-
-let d = null;
-console.log(typeof d);
+// Результат
+console.log('Смогу ли я работать? ' + (availableHours > projectHours));
+console.log('Стоимость работ: $' + projectHours * payRateUSD);
