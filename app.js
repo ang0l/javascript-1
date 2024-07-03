@@ -1,33 +1,20 @@
 /**
  * Angol. 2024.07.03
  * Функции
- * Введение в функции (31)
+ * Анонимные функции (32)
  */
 
-function logName() {
-    console.log(`Мое имя - Андрей`);
+// Такую функцию можно объявить после вызова. Она сработает.
+// "Всплытие".
+function powerOfTwo(num) {
+    return num * num;
 }
+console.log(powerOfTwo(5));
 
-const a = logName();
-console.log(typeof a); // undefined
-
-function logNameF(name, surName) {
-    console.log(`Мое имя - ${name} ${surName}`);
+// Анонимную функцию, помещенную в переменную/константу
+// необходимо сначала объявить, т.к. она в переменной/константе
+// без "Всплытия"
+const poft = function (num) {
+    return num * num;
 }
-
-logNameF('Андрей', 'Головушкин');
-
-// Расчет депозита
-// function countDepositSum(depositInUSD, month, rate) {
-//     const sum = depositInUSD * (1 + rate / 12) ** month;
-//     return sum;
-// }
-// Укоротим функцию
-function countDepositSum(depositInUSD, month, rate) {
-    return depositInUSD * (1 + rate / 12) ** month;
-}
-
-const example1 = countDepositSum(1000, 24, 0.12);
-console.log(example1);
-
-console.log(countDepositSum(1000, 48, 0.1));
+console.log(poft(6));
