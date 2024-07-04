@@ -1,56 +1,29 @@
 /**
  * Angol. 2024.07.03
  * Массивы
- * Принцип DRY
+ * Деструктуризация (46)
  */
+const userData = ['Антон', 18, 'Москва'];
 
-// Дан спиок задач
-// const tasks = ['Задача 1'];
-// Сделать функции:
-// - Добавления задач в конец
-// - Удаление задачи по названию
-// - Перенос задачи в начало списка по названию
-// Всегда меняем исходный массив
-
-const tasks = ['Задача 1'];
-
-function add(task) {
-    tasks.push(task)
+function getData() {
+    return ['Антон', 18, 'Москва']
 }
+// const userName = getData()[0];
+// const userAge = getData()[1];
+// const userCity = getData()[2];
+// ниже одной строкой сделаем тоже самое
 
-function remove(task) {
-    const index = tasks.indexOf(task);
-    if (index === -1) {
-        return;
-    }
-    // tasks.splice(index, 1);
-    return tasks.splice(index, 1);
-}
+// деструктуризация:
+// объявляем не массив, но список переменных, которым будут присваиваться элементам массива
+// еще раз своими словами:
+// каждой переменной из списка присваиваются значения из массива по порядку массива
+let [userName, userAge, userCity] = getData();
+// так же это можно сделать не с функцией, а с исходным массивом
+// const [userName, userAge, userCity] = userData;
 
-// Перепишем функцюю
-// function prioritize(task) {
-//     const index = tasks.indexOf(task);
-//     if (index == -1) {
-//         return;
-//     }
-//    const oldTask = tasks[index];
-//     tasks.splice(index, 1);
-//     tasks.unshift(oldTask);
-// }
-function prioritize(task) {
-    const result = remove(task);
-    if (!result) {
-        return;
-    }
-        tasks.unshift(result[0]);
-}
+console.log(userName, userAge, userCity);
 
-add('Задача 2');
-add('Задача 3');
-console.log(tasks);
+// исключаем элемент массива:
+[userName, _, userCity] = userData;
 
-remove('Задача 4');
-console.log(tasks);
-
-prioritize('Задача 3');
-console.log(tasks);
+console.log(userName, userCity);
