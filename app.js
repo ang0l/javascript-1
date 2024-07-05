@@ -1,39 +1,33 @@
 /**
  * Angol. 2024.07.05
  * Итерации в массивах
- * Reduce (64)
+ * Упражнение - Среднее значение (65)
  */
-const operations = [100, -20, 7, -30, 50];
 
-// как обычно - процедурный стиль
-let balance = 0;
-for (const operation of operations) {
-    balance += operation;
-}
-console.log(balance);
+// Найдите среднее значение последовательность
+// чисел с помощью redue
 
-// функциональный стиль
-const finalBalans = operations.reduce((acc, operation, i) => {
-    // для подробного представления веведем все агрументы
-    console.log(`Итерация ${i}, acc ${acc}, operation ${operation}`);
-    return acc += operation; // аккумулятор увеличили на operation
-}, 0); // задаем начало аккумулятора в нулевой итерации
-// как работает:
-// 0 итерация - acc = то что зададим - 0, operation = 100
-// 1 итерация - acc = то что мы вернем - 100, operation = -20
-// ...
-console.log(finalBalans);
+const arr = [1, 4, 4, 10];
 
-// получим минимальны элемент массива
-const minEl = operations.reduce((acc, operation, i) => {
-    if (operation > acc) {
-        return acc;
+// Мое решение?:
+const myAvg = arr.reduce((acc, arrEl, i) => {
+    // проверяю индекс на последний
+    if (i === arr.length - 1) {
+        // индекс последний - вычисляю среднее значение
+        return (acc + arrEl) / (i + 1);
     } else {
-        return operation;
+        // индекс не последний - складываю данные и возвращаю аккумулятор
+        return acc + arrEl;
     }
 }, 0);
-// т.к. аккумулятор (acc) не преобразуется (как в прошлом примере с operation),
-// то он просто хранит предыдущее значение,
-// а далее сравнивается с текущим значением
-// и при необходимости изменяется до минимального.
-console .log(minEl);
+console.log(myAvg);
+
+// Решение преподавателя:
+const avg = arr.reduce((acc, el, i) => {
+    if (i !== arr.length - 1) {
+        return acc + el;
+    } else {
+        return (acc + el) / arr.length;
+    }
+}, 0);
+console.log(avg);
