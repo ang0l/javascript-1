@@ -1,32 +1,28 @@
 /**
  * Angol. 2024.07.05
  * Итерации в массивах
- * Map (61)
+ * Filter (62)
  */
 
-// const score = [5, 10, 0, 15];
+const operations = [100, -20, 7, -20, 50];
 
-// // for (const[i, el] of score.entries()) { // Метод entries возвращает массив с индеком и значением элемента массива.
-// //     console.log(`Раунд ${i + 1}:  ${el}`);
-// // }
-
-// score.forEach((scoreEl, i) => { // есть еще третий аргумент, который является самим исходным массивом.
-//     console.log(`Раунд ${i + 1}:  ${scoreEl}`);
-// })
-
-const transactionInUSD = [10, -7, 50, -10, 100];
-
-// конвертация USD в RUB
-
-// процедурный стиль:
-const transactionInRUB = [];
-for (const transaction of transactionInUSD) {
-    transactionInRUB.push(transaction * 60);
-}
-console.log(transactionInUSD);
-console.log(transactionInRUB);
+// процедурный стиль
+// const positiveOpreations = [];
+// for (const operation of operations) {
+//     if (operation > 0) {
+//         positiveOpreations.push(operation);
+//     }
+// }
+// console.log(positiveOpreations);
 
 // функциональный стиль:
-const transactionInRUB2 = transactionInUSD.map((transaction) => transaction * 60);
-console.log(transactionInUSD);
-console.log(transactionInRUB2);
+// выводим приходные операции
+const positiveOpreations = operations.filter(operation => operation > 0);
+console.log(positiveOpreations);
+
+// последовательное применение методов:
+// выводим приходные операции и конвертируем в рубли
+const positiveRUBOpreations = operations
+    .filter(operation => operation > 0)
+    .map(operation => operation * 60);
+console.log(positiveRUBOpreations);
