@@ -1,20 +1,23 @@
 /**
  * Angol. 2024.07.03
  * Циклы
- * Цикл For (49)
+ * Break и continue (50)
  */
 
-// console.log('Наш баланс 1$');
-// console.log('Наш баланс 2$');
-// console.log('Наш баланс 3$');
-// console.log('Наш баланс 4$');
-// console.log('Наш баланс 5$');
-// console.log('Наш баланс 6$');
-// console.log('Наш баланс 7$');
-// console.log('Наш баланс 8$');
-// console.log('Наш баланс 9$');
+const tasks = ['Задача 1', 'Задача 2', 'Задача 3'];
 
-for (let i = 1; i < 10; i++) {
+for (let i = 0; i < tasks.length; i++) {
+    if (tasks[i] === 'Задача 2') {
+        continue; // закончить итерацию и начать новую
+    }
+    console.log(tasks[i]);
+}
 
-    console.log(`Наш баланс $${i}`);
+console.log('-----------------');
+
+for (let i = 0; i < tasks.length; i++) {
+    if (tasks[i] === 'Задача 2') {
+        break; // прекратить выполнение цикла
+    }
+    console.log(tasks[i]);
 }
