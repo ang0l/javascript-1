@@ -1,33 +1,31 @@
 /**
  * Angol. 2024.07.05
  * Итерации в массивах
- * Упражнение - Среднее значение (65)
+ * Find и FindIndx (66)
  */
 
-// Найдите среднее значение последовательность
-// чисел с помощью redue
+// поиск по массиву
 
-const arr = [1, 4, 4, 10];
+const arr = [2, 4, 4, 10, 20];
 
-// Мое решение?:
-const myAvg = arr.reduce((acc, arrEl, i) => {
-    // проверяю индекс на последний
-    if (i === arr.length - 1) {
-        // индекс последний - вычисляю среднее значение
-        return (acc + arrEl) / (i + 1);
-    } else {
-        // индекс не последний - складываю данные и возвращаю аккумулятор
-        return acc + arrEl;
+// найти первый элемент больше 5
+// процедурный стиль (цыклы)
+let elGT5;
+for (const el of arr) {
+    if (el > 5) {
+        elGT5 = el;
+        break;
     }
-}, 0);
-console.log(myAvg);
+}
+console.log(elGT5); // 10
 
-// Решение преподавателя:
-const avg = arr.reduce((acc, el, i) => {
-    if (i !== arr.length - 1) {
-        return acc + el;
-    } else {
-        return (acc + el) / arr.length;
-    }
-}, 0);
-console.log(avg);
+// функциональный стиль
+// find
+elGT5 = arr.find(el => el > 5);
+console.log(elGT5); // 10
+
+// findIndex
+elGT5Index = arr.findIndex(el => el > 5);
+elGT5IndexNeg = arr.findIndex(el => el < 0);
+console.log(elGT5Index); // 3
+console.log(elGT5IndexNeg); // -1 (элемент не найден)
