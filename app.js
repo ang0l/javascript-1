@@ -1,28 +1,27 @@
 /**
  * Angol. 2024.07.05
  * Итерации в массивах
- * Filter (62)
+ * Упражнение - вывод изменений цен (63)
  */
 
-const operations = [100, -20, 7, -20, 50];
+// Имеется массив изменения цен prices, где внутри
+// 1й элемент массва является ценой в момент X,
+// 2й - ценой в момент Y.
+// Нужно преобразовать данные в массив, где будут отображены
+// только положительные изменения цен: [100, 150]
 
-// процедурный стиль
-// const positiveOpreations = [];
-// for (const operation of operations) {
-//     if (operation > 0) {
-//         positiveOpreations.push(operation);
-//     }
-// }
-// console.log(positiveOpreations);
+const prices = [[100, 200], [120, 100], [200, 350]];
 
-// функциональный стиль:
-// выводим приходные операции
-const positiveOpreations = operations.filter(operation => operation > 0);
-console.log(positiveOpreations);
+// Мое решение: сначала фильтрую отрицательные изменения цен, далее вычисляю значения.
+const positive = prices
+    .filter(price => price[0] < price[1]) // оставли только положительные изменения цен.
+    .map(price => price[1] - price[0]); // поместил в массив разницу между изменениями цен.
 
-// последовательное применение методов:
-// выводим приходные операции и конвертируем в рубли
-const positiveRUBOpreations = operations
-    .filter(operation => operation > 0)
-    .map(operation => operation * 60);
-console.log(positiveRUBOpreations);
+console.log(positive);
+
+// Решение преподавателя:
+// сначала преобразовываем, далее фильруем отрицатеьные значения (наоборот)
+const result = prices
+    .map(product => product[1] - product[0])
+    .filter(price => price > 0);
+console.log(result);
