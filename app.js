@@ -1,24 +1,21 @@
 /**
  * Angol. 2024.07.05
- * Функции высшего порядка
- * Упражнение - Стрелочные функции (58)
+ * Итерации в массивах
+ * ForEach (58)
  */
 
-// function power(pow) {
-//     return function (num) {
-//         return num ** pow;
-//     }
+const score = [5, 10, 0, 15];
+
+// for (const[i, el] of score.entries()) { // Метод entries возвращает массив с индеком и значением элемента массива.
+//     console.log(`Раунд ${i + 1}:  ${el}`);
 // }
 
-// Переписал вышенаписанную функцию в стрелочную функцию:
-const power = pow => num => num ** pow;
-
-const powerOfTwo = power(2);
-console.log(powerOfTwo(5));
-console.log(powerOfTwo(10));
-
-const powerOfTree = power(3);
-console.log(powerOfTree(5));
-
-console.log(power(5)(4));
-
+// score.forEach(function(el) {
+//     console.log(`Раунд:  ${el}`);
+// })
+//
+// вариант стрелочной функции
+score.forEach((el, i) => { // аргументы: елемент, индекс
+    console.log(`Раунд ${i + 1}:  ${el}`);
+})
+// особенностью метода forEach является то, что нельзя отменить итерирование break-ом.
