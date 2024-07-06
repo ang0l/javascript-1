@@ -1,31 +1,37 @@
 /**
- * Angol. 2024.07.05
+ * Angol. 2024.07.06
  * Итерации в массивах
- * Find и FindIndx (66)
+ * Упражнение - Реализация Some (66)
  */
-
-// поиск по массиву
 
 const arr = [2, 4, 4, 10, 20];
 
-// найти первый элемент больше 5
-// процедурный стиль (цыклы)
-let elGT5;
-for (const el of arr) {
-    if (el > 5) {
-        elGT5 = el;
-        break;
+// Мое решение в 2 вариантах
+// Функция на цикле
+function someOnCycle(arr, arrEl) {
+    res = false;
+    for (const el of arr) {
+        if (el === arrEl) {
+            res = true;
+        }
     }
+    return res;
 }
-console.log(elGT5); // 10
+console.log(someOnCycle(arr, 4));
 
-// функциональный стиль
-// find
-elGT5 = arr.find(el => el > 5);
-console.log(elGT5); // 10
+// Функция на findIndex
+function someOnFindIndex(arr, arrEl) {
+    return arr.findIndex(el => el === arrEl) > -1;
+}
+console.log(someOnFindIndex(arr, 5));
 
-// findIndex
-elGT5Index = arr.findIndex(el => el > 5);
-elGT5IndexNeg = arr.findIndex(el => el < 0);
-console.log(elGT5Index); // 3
-console.log(elGT5IndexNeg); // -1 (элемент не найден)
+// Решение преподавателя
+function some(array, element) {
+    const res = array.find(el => el === element);
+    return res == undefined ? false : true;
+}
+console.log(some(arr, 22));
+
+// а теперь
+// реализованный метод some в JS
+console.log(arr.some(el => el === 4));
