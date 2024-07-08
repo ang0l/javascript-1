@@ -1,44 +1,35 @@
 /**
  * Angol. 2024.07.08
  * Работа со строками
- * Упражнение - выделение имени (73)
+ * Преобразование строки (74)
  */
 
-// вытащить имя и фамилию в отдельные переменные
+// перед преобразованием дополним использование проверок
+const str = 'Вася Пупкина';
+console.log(str.includes('а')); // проверяем вхождение подстроки в строку
+console.log(str.startsWith('В')); // проверяем на вхождение подстроки в начало строки
+console.log(str.endsWith('кина')); // проверяем на вхождение подстроки в конец строки
 
-let userName = 'Вася aka Terminator Пупкин';
+// под капотом строки преобразуются в объекты у которых есть свои методы
+// строка как объект (как работает строка под капотом):
+console.log(new String('Вася Пупкин').includes('а'));
 
-// мое решение:
-// перевести строку в массив, выбрать необходимые элементы
-// собрать из массива строку
-function nameFormStr(str) {
-    // Разбиваем строку на элементы массива
-    const arrStr = str.split(' ');
-    // вытаскиваем первый элемент массива - имя
-    const name = arrStr.slice(0, 1);
-     // вытаскиваем последний элемент массива - фамилия
-    const surName = arrStr.slice(-1);
-    // соединяем массивы
-    fullName = name.concat(surName);
-    // формируем строку из массива
-    return fullName.join(' ');
-}
-// выводим результат
-console.log(nameFormStr(userName)); // Вася Пупкин
+// преобразование строки
+// методы не модифицируют строку
+console.log(str.toLowerCase()); // вася пупкин
+console.log(str.toUpperCase()); // ВАСЯ ПУПКИН
+console.log(str.replace('В', 'Ф')); // Фася Пупкина
+console.log(str.replace('П', 'Д')); // Вася Дупкина
+console.log(str.replace('а', 'и')); // Вися Пупкина
+console.log(str.replace('а', 'и')); // Вися Пупкина
+// replace заменяет первое вхождение в строку
+console.log(str.replaceAll('а', 'и')); // Вися Пупкини
+// replaceAll заменяет все вхождения в строку
+// метод новый, возможно не всеми браузерами поддерживается
+// можно использовать replace с регулярным выражением с модификатором 'g'
+console.log(str.replace(/а/g, 'и')); // Вися Пупкини
 
-// Решение преподавателя
-// Переименована константа
-const fullUserName = 'Вася aka Terminator Пупкин';
-// копируем в userName имя из строки
-// с нулевого индекса строки по первый индекс пробела
-userName = fullUserName.slice(0, fullUserName.indexOf(' '));
-console.log(userName); // проверяем
-// rjgbhetv d userSurName фамилию из строки
-// с посдледнего индекса пробела по конец строки
-userSurName = fullUserName.slice(fullUserName.lastIndexOf(' ') + 1, fullUserName.length);
-console.log(userSurName); // проверяем
-
-// конечно же нужно было работать с строками а не с массивами.
-// мы же изучали строки. Прррррррр.
-// но, в общем, методы у них одинаковые
-
+const str2 = '   Вася Пупкин   \n';
+console.log(str2.trim()); // Вася пупкин
+console.log(str2.trimEnd()); //    Вася пупкин
+console.log(str2.trimStart()); // Вася пупкин   \n
