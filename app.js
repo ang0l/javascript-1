@@ -1,35 +1,82 @@
 /**
  * Angol. 2024.07.08
  * Работа со строками
- * Преобразование строки (74)
+ * Преобразование строки (75)
  */
 
-// перед преобразованием дополним использование проверок
-const str = 'Вася Пупкина';
-console.log(str.includes('а')); // проверяем вхождение подстроки в строку
-console.log(str.startsWith('В')); // проверяем на вхождение подстроки в начало строки
-console.log(str.endsWith('кина')); // проверяем на вхождение подстроки в конец строки
+// Проверить является ли это номером телефона России
+// верные
+const num1 = '89103235356';
+const num2 = '+79103235357';
+const num3 = '+7(910)3235356';
+const num4 = '+7(910) 323-53-56';
+const num5 = '   +7(910) 323-53-56   ';
+// неверные
+const un1Error = '89103235';
+const un2Error = '+7d910d323-53-56';
+const un3Error = '9+79103235356';
+const un4Error = '89103g35356';
 
-// под капотом строки преобразуются в объекты у которых есть свои методы
-// строка как объект (как работает строка под капотом):
-console.log(new String('Вася Пупкин').includes('а'));
+// функуия isNaN возвращает trut если проверяется строка, false - если число.
+console.log(isNaN(Number('123456+'))); // если не число - true, иначе false
 
-// преобразование строки
-// методы не модифицируют строку
-console.log(str.toLowerCase()); // вася пупкин
-console.log(str.toUpperCase()); // ВАСЯ ПУПКИН
-console.log(str.replace('В', 'Ф')); // Фася Пупкина
-console.log(str.replace('П', 'Д')); // Вася Дупкина
-console.log(str.replace('а', 'и')); // Вися Пупкина
-console.log(str.replace('а', 'и')); // Вися Пупкина
-// replace заменяет первое вхождение в строку
-console.log(str.replaceAll('а', 'и')); // Вися Пупкини
-// replaceAll заменяет все вхождения в строку
-// метод новый, возможно не всеми браузерами поддерживается
-// можно использовать replace с регулярным выражением с модификатором 'g'
-console.log(str.replace(/а/g, 'и')); // Вися Пупкини
+// Мое решение:
+function isNumber(num) {
+    const tempNum = num
+        .trim()
+        .replace('+7', '8')
+        .replaceAll('(', '')
+        .replaceAll(')', '')
+        .replaceAll(' ', '')
+        .replaceAll('-', '');
 
-const str2 = '   Вася Пупкин   \n';
-console.log(str2.trim()); // Вася пупкин
-console.log(str2.trimEnd()); //    Вася пупкин
-console.log(str2.trimStart()); // Вася пупкин   \n
+    switch (true) {
+        case tempNum.length !== 11:
+            return false;
+        case !tempNum.startsWith('8'):
+            return false;
+        case isNaN(Number(tempNum)):
+            return false;
+        default:
+            return true;
+    }
+
+}
+
+console.log(`Номер телефона ${isNumber(un4Error) ? 'верный' : 'неверный'}`);
+
+
+// Решение преподавателя:
+function isPhoneNubmer(num) {
+    num = num.trim();
+    num = num.replace('+7', '8');
+    if (!num.startsWith('8')) {
+        return false;
+    }
+    num = num.replaceAll('(', '');
+    num = num.replaceAll(')', '');
+    num = num.replaceAll(' ', '');
+    num = num.replaceAll('-', '');
+    if (num.length != 11) {
+        return false;
+    }
+    let onlyNumber = true;
+    for (const char of num) {
+        if (isNaN(Number(char))) {
+            onlyNumber = false;
+            break;
+        }
+    }
+    return onlyNumber;
+}
+// true
+console.log(isPhoneNubmer(num1));
+console.log(isPhoneNubmer(num2));
+console.log(isPhoneNubmer(num3));
+console.log(isPhoneNubmer(num4));
+console.log(isPhoneNubmer(num5));
+// false
+console.log(isPhoneNubmer(un1Error));
+console.log(isPhoneNubmer(un2Error));
+console.log(isPhoneNubmer(un3Error));
+console.log(isPhoneNubmer(un4Error));
