@@ -1,43 +1,26 @@
 /**
- * Angol. 2024.07.11
+ * Angol. 2024.07.12
  * Объекты
- * Упражнение - преобразование объектов (82)
+ * Методы объектов (83)
  */
 
-// Преобразовать пользователей до вида
-// { fullName: 'Вася Пупкин', skillNum: 2 }
+const user = {
+    name: 'Вася',
+    surname: 'Пупкин',
+    age: 24,
 
-const users = [
-    {
-        name: 'Вася',
-        surname: 'Пупкин',
-        age: 30,
-        skills: ['Разраотка', 'DevOps']
-    },
-    {
-        name: 'Катя',
-        surname: 'Белова',
-        age: 18,
-        skills: ['Дизайн']
-    },
-];
-
-// Мое решение:
-const usersMod = users.map((obj) => {
-    return {
-        fullName: `${obj.name} ${obj.surname}`,
-        skillNum: obj.skills.length
+    getFullName: function() {
+        console.log(this);
+        return this.name + ' ' + this.surname;
     }
-});
-console.log(usersMod);
+}
 
-// Решение преподавателя
-const userData = users.map(user => {
-    return {
-        fullName: `${user.name} ${user.surname}`,
-        skillNum: user.skills.length
-    }
-});
-console.log(userData);
+const getFullName = function(user) {
+    return user.name + ' ' + user.surname;
+}
 
-// название переменных...
+console.log(user.getFullName()); // обращение к методу объекта
+
+const arr = [1, 2];
+arr.sort(); // обращение к методу массива (объекта)
+'23432EFCD324'.toLowerCase(); // обращение к методу строки (объекта)
