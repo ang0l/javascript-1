@@ -1,36 +1,46 @@
 /**
  * Angol. 2024.07.12
  * Объекты
- * Итерирование по объектам (86)
+ * Деструктуризация и rest (87)
  */
 
-// объект городов: город, температура, что-нибудь еще.
-const cities = {
-    msk: {
-        temp: 25
-    },
-    spb: {
-        temp: 20
-    }
-}
+// вспомним деструктуризацию массива.
+// деструктуризация массива позволяет разбить массив на отдельные переменные
+const arr = [1, 2, 3];
+const [z, y, x] = arr;
+console.log(z); // 1
+console.log(y); // 2
+console.log(x); // 3
 
-// for (const city of cities) {
-//     console.log(city);
-// }
+// объекты
+let user = {
+    name: 'Вася',
+    age: 40,
+    city: 'Москва'
+};
 
-let sumTemp = 0;
-// let citiesCount = 0; // оптимизируем код
-let citiesCount = Object.keys(cities).length;
-// метод keys объекта Object позволяет получить ключи из нашего объекта
+// const {age, name} = user;
+// console.log(age); // 40
+// console.log(name); // Вася
 
-for (const key in cities) {
-    // citiesCount ++; // оптимизируем код
-    sumTemp += cities[key].temp;
-}
-console.log(sumTemp / citiesCount);
+const {age, ...userWithouAge} = user;
+// возраст вытащили в одну переменную,
+// остальное в другой объект (rest)
+// можно оставить только, например, возраст, а все остальное не брать
+// const {age};
+console.log(userWithouAge);
 
-sumTemp = 0;
-for (const key of Object.keys(cities)) {
-    sumTemp += cities[key].temp;
-}
-console.log(sumTemp / citiesCount);
+const additionalData = {
+    skills: ['Разработка', 'Дизайн'],
+    creditCard: '1234-4567-9876-1234'
+};
+
+// user.skills = additionalData.skills;
+// user.creditCard = additionalData.creditCard;
+// воспользщуемся спред оператором
+
+user = {
+    ...user, // взять все свойства и переместить их в отдельную переменную
+    ...additionalData // взять все свойства и переместить их в отдельную переменную
+};
+console.log(user);
