@@ -1,24 +1,28 @@
 /**
- * Angol. 2024.07.16
+ * Angol. 2024.07.17
  * Как работает JS под капотом
- * Примитивы и объекты (95)
+ * Пример примитивов и объектов (96)
  */
 
-'use strict';
-
-let firstName = 'Антон';
-let firstName2 = firstName;
-firstName2 = 'New';
-
-console.log(firstName); // Антон
-console.log(firstName2); // New
-
-const user1 = {
-    name: 'Антон',
+const user = {
+    name: 'Anton',
+    id: 1,
+    roles: ['Admin'],
 };
 
-const user2 = user1;
-user2.name = 'New';
+// user.name = 'NewUser';
+// console.log(user);
 
-console.log(user1); // New
-console.log(user2); // New
+const newUser = Object.assign({}, user);
+user.name = 'NewUser';
+console.log(user); // {name: 'NewUser', id: 1}
+console.log(newUser); // {name: 'Anton', id: 1}
+
+const newUser2 = {
+    ...user
+};
+newUser2.name = 'NewUser';
+newUser2.roles.push('User');
+
+console.log(user); // roles: ['Admin', 'User']
+console.log(newUser); // roles: ['Admin', 'User']
