@@ -1,22 +1,24 @@
 /**
  * Angol. 2024.07.16
  * Как работает JS под капотом
- * Пример работы call stack (94)
+ * Примитивы и объекты (95)
  */
 
-const sum = 1;
-console.log('started');
-console.log(sum);
+'use strict';
 
-function add5(n) {
-    n = n + 5;
-    if (n > 100) {
-        return n;
-    }
+let firstName = 'Антон';
+let firstName2 = firstName;
+firstName2 = 'New';
 
-    console.log(n);
-    return add5(n);
-}
+console.log(firstName); // Антон
+console.log(firstName2); // New
 
-add5(sum);
-console.log('ended');
+const user1 = {
+    name: 'Антон',
+};
+
+const user2 = user1;
+user2.name = 'New';
+
+console.log(user1); // New
+console.log(user2); // New
