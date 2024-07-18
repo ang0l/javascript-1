@@ -1,40 +1,41 @@
 /**
  * Angol. 2024.07.18
  * Scope и this
- * Пример scope chain (99)
+ * Пример поднятия (101)
  */
-'use strict';
 
-let succesMessage = 'Успех';
+// 'use strict';
 
-const user = {
-    name: 'Вася',
-    roles: [],
+addUser();
+// console.log(a); // ошибка Нет достпупа к переменной a до ее объявления
+console.log(b); // undefined
+
+const a = 3;
+var b = 2;
+
+console.log(b); // 2
+console.log(a); // 3 (после объявения переменной)
+// с точки зрения Поднятия let ведет себя так же как и const
+
+function addUser() {
+    // console.log('User added');
 }
 
-function addRole(user, role) {
-    if (role === 'admin') {
-        const message = 'Ошибка';
-        console.log(message);
-        // console.log(a); // ошибка
-        return user;
-    }
-    user.roles.push(role);
+addUser();
 
-    let succesMessage = 'Ура';
-    console.log(succesMessage);
-
-    function logRoles() {
-        // const a = 3; // обращение к a в блоке if
-        console.log(user.roles);
-    }
-    logRoles();
-    return user;
+// arr1(); // ошибка Нет достпупа к стрелочной фукнции arr1 до ее объявления
+// объявление стрелочной функции через let будет так же
+// объявление стрелочной фукнции через var: ошибка: arr1 - не функция
+var arr1 = () => {
+    console.log('arr1');
 }
 
-// console.log(addRole(user, 'dev'));
-console.log(addRole(user, 'admgin'));
-console.log(succesMessage); // Успех
-// при объявлении (let, const) переменной внутри функции создается новая переменная
-// в контектсе функции, котороя не имеет ничего общего с глобальной переменной.
+arr1();
 
+// Рекомендация преподавателя:
+// если есть функции, обявлять их вначале. Да, они Поднимаются, но это будет читабельней.
+// тем более, если это стрелочная функция.
+//
+// var не использовать. Да, он Подимается, но он в undefined. И плохо читается код.
+//
+// Поднятием пользоваться, по возможности, крайне редко. Опять же для лучшей читаемости кода.
