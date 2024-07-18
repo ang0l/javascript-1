@@ -1,42 +1,30 @@
 /**
  * Angol. 2024.07.18
  * Scope и this
- * Контекст в методах (104)
+ * Arguments (105)
  */
 
 'use strict';
 
-// стрелочные функции в контексте объекта
-const user = {
-    firstName: 'Вася',
-    lastName: 'Пупкин',
-    age: 20,
-    getUserInfo: function() {
-        console.log(this); // объект
-        console.log(`${this.firstName} ${this.lastName}`);
+// Контекст состоит из трех составляющих:
+//
+// let, var, const, func, arguments
+// Scope chain
+// this
 
-        const canDrink = () => {
-            if (this.age >= 18) {
-                console.log('Может уже пить');
-            } else {
-                console.log('Не может пить');
-            }
-        }
-        canDrink();
-    },
-
-    getUserInfoArrow: () => {
-        console.log(this); // Window
-        console.log(`${this.firstName} ${this.lastName}`);
-    }
+function sumNum(num1, num2) {
+    console.log(this); // undefined
+    console.log(arguments); // аргументы нашей функции
+    console.log(arguments[0]); // 1
+    return num1 + num2;
 }
 
-// user.getUserInfo(); // Вася Пупкин
-// user.getUserInfoArrow(); // undefined undefined
-// в стрелочной функции внутри объекта не имеет своего this. this указывает на Window (на глобальный скоп).
+console.log(sumNum(1, 4)); // 5
+console.log(sumNum(1, 4, 3, 7)); // 5
 
-// добавили еще одну функцию в метод объекта (canDrink())
-// user.getUserInfo(); // ошибка о невозможности прочитать свойства (age)
-
-// переделали эту функцию в стрелчную и this стал виден в контекстре объекта
-user.getUserInfo();
+const sumNumArr = (num1, num2) => {
+    console.log(this); // Window
+    console.log(arguments); // аргументы совершенно неопределены
+    return num1 + num2;
+}
+console.log(sumNumArr(1, 4, 3, 7)); // Ошибка неопределения аргументов
