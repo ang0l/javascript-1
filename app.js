@@ -1,28 +1,28 @@
 /**
- * Angol. 2024.07.17
- * Как работает JS под капотом
- * Пример примитивов и объектов (96)
+ * Angol. 2024.07.18
+ * Scope и this
+ * Strict mode (98)
  */
+'use strict';
 
-const user = {
-    name: 'Anton',
-    id: 1,
-    roles: ['Admin'],
-};
+let myCoolVariable = 1;
 
-// user.name = 'NewUser';
-// console.log(user);
+if (true) {
+    myCoolVariable = 3; // myCoolVariabl при use strict выдает здесь ошибку
+    function a () {
+        console.log('Test');
+    }
+}
 
-const newUser = Object.assign({}, user);
-user.name = 'NewUser';
-console.log(user); // {name: 'NewUser', id: 1}
-console.log(newUser); // {name: 'Anton', id: 1}
+// a(); // без use strict функция видна в глобальном скопе
 
-const newUser2 = {
-    ...user
-};
-newUser2.name = 'NewUser';
-newUser2.roles.push('User');
+console.log(myCoolVariable);
 
-console.log(user); // roles: ['Admin', 'User']
-console.log(newUser); // roles: ['Admin', 'User']
+// const interface = 8; // interface - зарезервированное слово без use strict ошибки не будет
+
+// use strict блокирует дублирование аргументв
+// без use strict функция b() отработает без проблем.
+// function b(c, c) {
+//     console.log(c);
+// }
+// b(1, 1);
