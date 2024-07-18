@@ -1,28 +1,40 @@
 /**
  * Angol. 2024.07.18
  * Scope и this
- * Strict mode (98)
+ * Пример scope chain (99)
  */
 'use strict';
 
-let myCoolVariable = 1;
+let succesMessage = 'Успех';
 
-if (true) {
-    myCoolVariable = 3; // myCoolVariabl при use strict выдает здесь ошибку
-    function a () {
-        console.log('Test');
-    }
+const user = {
+    name: 'Вася',
+    roles: [],
 }
 
-// a(); // без use strict функция видна в глобальном скопе
+function addRole(user, role) {
+    if (role === 'admin') {
+        const message = 'Ошибка';
+        console.log(message);
+        // console.log(a); // ошибка
+        return user;
+    }
+    user.roles.push(role);
 
-console.log(myCoolVariable);
+    let succesMessage = 'Ура';
+    console.log(succesMessage);
 
-// const interface = 8; // interface - зарезервированное слово без use strict ошибки не будет
+    function logRoles() {
+        // const a = 3; // обращение к a в блоке if
+        console.log(user.roles);
+    }
+    logRoles();
+    return user;
+}
 
-// use strict блокирует дублирование аргументв
-// без use strict функция b() отработает без проблем.
-// function b(c, c) {
-//     console.log(c);
-// }
-// b(1, 1);
+// console.log(addRole(user, 'dev'));
+console.log(addRole(user, 'admgin'));
+console.log(succesMessage); // Успех
+// при объявлении (let, const) переменной внутри функции создается новая переменная
+// в контектсе функции, котороя не имеет ничего общего с глобальной переменной.
+
