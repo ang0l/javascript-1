@@ -1,42 +1,42 @@
 /**
  * Angol. 2024.07.18
  * Scope и this
- * Пример использования this (103)
+ * Контекст в методах (104)
  */
 
 'use strict';
 
-console.log(window); // Window
-console.log(this); // Window
-
-function addNum(num1, num2) {
-    console.log(this);
-    return num1 + num2;
-}
-addNum(); // undefined
-
-const addNum2 = (num1, num2) => {
-    console.log(this);
-    return num1 + num2;
-}
-addNum2(); // Window
-
+// стрелочные функции в контексте объекта
 const user = {
-    name: 'Вася',
-    surname: 'Пупкин',
-    getFulName: function() {
-        console.log(this);
-        return this.name + ' ' + this.surname;
+    firstName: 'Вася',
+    lastName: 'Пупкин',
+    age: 20,
+    getUserInfo: function() {
+        console.log(this); // объект
+        console.log(`${this.firstName} ${this.lastName}`);
+
+        const canDrink = () => {
+            if (this.age >= 18) {
+                console.log('Может уже пить');
+            } else {
+                console.log('Не может пить');
+            }
+        }
+        canDrink();
+    },
+
+    getUserInfoArrow: () => {
+        console.log(this); // Window
+        console.log(`${this.firstName} ${this.lastName}`);
     }
 }
-user.getFulName(); // {name: 'Вася', surname: 'Пупкин', getFulName: ƒ}
 
-const user2 = {
-    name: 'Марина',
-    surname: 'Катц',
-}
-user2.getFulName = user.getFulName;
-user2.getFulName(); // {name: 'Марина', surname: 'Катц', getFulName: ƒ}
+// user.getUserInfo(); // Вася Пупкин
+// user.getUserInfoArrow(); // undefined undefined
+// в стрелочной функции внутри объекта не имеет своего this. this указывает на Window (на глобальный скоп).
 
-const getFulName = user2.getFulName;
-getFulName(); // undefined и ошибка о невозможности прочитать свойства name и surname
+// добавили еще одну функцию в метод объекта (canDrink())
+// user.getUserInfo(); // ошибка о невозможности прочитать свойства (age)
+
+// переделали эту функцию в стрелчную и this стал виден в контекстре объекта
+user.getUserInfo();
