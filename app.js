@@ -1,40 +1,33 @@
 /**
  * Angol. 2024.07.20
- * Scope и this
- * Упражнение - объект в объекте (106)
+ * Управление this
+ * EOL для методов (108)
  */
 
 'use strict';
 
-// дополнить объект методами для получения имени:
-// - компании;
-// - сео;
-// - сотрудника;
+// небольшое напоминание
+// const b = 1;
+// const a = {
+//     b
+// }
 
-const company = {
-    name: 'ООО Агро',
-    employees: [
-        {
-            name: 'Света',
+// console.log(a); // {b: 1}
 
-            getName: function() {
-                return this.name;
-            }
-       }
-    ],
-    ceo: {
-        name: 'Вася',
-
-        getName: function() {
-            return this.name;
-        }
+const b = 1;
+const a = {
+    b,
+    getB: function() {
+        return this.b;
     },
 
-    getName: function() {
-        return this.name;
+    // следующая запись метода (getBAlt) делает абсолютно тоже, что и метод getB
+    // в объектах лучше методы писать именно так
+    // в классах методы пишутся так же:
+    getBAlt() {
+        return this.b;
     }
 }
 
-console.log(company.getName());
-console.log(company.ceo.getName());
-console.log(company.employees.map(employee => employee.getName()));
+console.log(a.getB()); // 1
+console.log(a.getBAlt()); // 1
