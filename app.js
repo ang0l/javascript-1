@@ -1,30 +1,40 @@
 /**
- * Angol. 2024.07.18
+ * Angol. 2024.07.20
  * Scope и this
- * Arguments (105)
+ * Упражнение - объект в объекте (106)
  */
 
 'use strict';
 
-// Контекст состоит из трех составляющих:
-//
-// let, var, const, func, arguments
-// Scope chain
-// this
+// дополнить объект методами для получения имени:
+// - компании;
+// - сео;
+// - сотрудника;
 
-function sumNum(num1, num2) {
-    console.log(this); // undefined
-    console.log(arguments); // аргументы нашей функции
-    console.log(arguments[0]); // 1
-    return num1 + num2;
+const company = {
+    name: 'ООО Агро',
+    employees: [
+        {
+            name: 'Света',
+
+            getName: function() {
+                return this.name;
+            }
+       }
+    ],
+    ceo: {
+        name: 'Вася',
+
+        getName: function() {
+            return this.name;
+        }
+    },
+
+    getName: function() {
+        return this.name;
+    }
 }
 
-console.log(sumNum(1, 4)); // 5
-console.log(sumNum(1, 4, 3, 7)); // 5
-
-const sumNumArr = (num1, num2) => {
-    console.log(this); // Window
-    console.log(arguments); // аргументы совершенно неопределены
-    return num1 + num2;
-}
-console.log(sumNumArr(1, 4, 3, 7)); // Ошибка неопределения аргументов
+console.log(company.getName());
+console.log(company.ceo.getName());
+console.log(company.employees.map(employee => employee.getName()));
