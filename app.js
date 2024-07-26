@@ -1,29 +1,34 @@
 /**
  * Angol. 2024.07.26
  * DOM
- * Выбор и манипуляции с элементами (115)
+ * Обработка нажатий (116)
  */
 
 'use strict';
 
-// console.log(document); // блоки head, body пустые
+document.querySelector('.button').addEventListener('click', function(e) {
+    // console.log(e); // в браузере при клике на кнопку, в консоле выводится poineterEvent
+    const input = document.querySelector('.input').value;
+    if (!input) {
+        return;
+    }
 
-// // загрузим документ (включаем слушателя)
-// addEventListener('load', () => {
-//     console.log(document);
-// })
+    // console.log(input); // проверяем, что получилось
 
-// в документе index.html перенесли загрузку скрипта в самый низ блока body
-// console.log(document);
-console.log(document.querySelector('.panel')); //  <div class="panel">I love this!</div>
-console.log(document.querySelector('.panel').innerHTML); // I love this!
-console.log(document.querySelector('.panel').innerText); // I love this!
+    document.querySelector('.panel').innerText = input; // меняем текст в панели
+    document.querySelector('.input').value = ''; // очищаем поле ввода
+});
 
-const panelText = document.querySelector('.panel').innerText;
-console.log(panelText); // I love this!
+// сделаем все немного красивие:
+function changeClick() {
+    const input = document.querySelector('.input').value;
+    if (!input) {
+        return;
+    }
 
-// меняем в браузере текст I love this! на New text:
-document.querySelector('.panel').innerText = 'New text';
+    document.querySelector('.panel').innerText = input;
+    document.querySelector('.input').value = '';
+};
 
-// заполняем текстовое поле input значением Text:
-document.querySelector('.input').value = 'Text';
+// как вызвать?
+// вызовем из HTML-кода (строка 14): <button class="button" onclick="changeClick">Change</button>
