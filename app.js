@@ -1,69 +1,29 @@
 /**
- * Angol. 2024.07.24
- * Управление this
- * Упражнение - Работа с замыканиями (113)
+ * Angol. 2024.07.26
+ * DOM
+ * Выбор и манипуляции с элементами (115)
  */
 
 'use strict';
 
-// сделать функцию пользователя, которая берет за основу
-// userInfo и за счет замыкания создает новый объект, с 
-// которым можно работать как user1().increse(100)
+// console.log(document); // блоки head, body пустые
 
-const userInfo = {
-    balanse: 0,
-    ooperations: 0,
-    increse(sum) {
-        this.balanse += sum;
-        this.ooperations ++;
-    },
-};
+// // загрузим документ (включаем слушателя)
+// addEventListener('load', () => {
+//     console.log(document);
+// })
 
-// Мое решение
-const userMy = userInfo;
+// в документе index.html перенесли загрузку скрипта в самый низ блока body
+// console.log(document);
+console.log(document.querySelector('.panel')); //  <div class="panel">I love this!</div>
+console.log(document.querySelector('.panel').innerHTML); // I love this!
+console.log(document.querySelector('.panel').innerText); // I love this!
 
-userMy.increse(100);
-userMy.increse(-50);
-userMy.increse(200);
+const panelText = document.querySelector('.panel').innerText;
+console.log(panelText); // I love this!
 
-console.log(userMy.balanse); // 250
+// меняем в браузере текст I love this! на New text:
+document.querySelector('.panel').innerText = 'New text';
 
-// вобщем я замыкание вообще не использоват.
-// если я правльно понял, то замыкание - это функция возвращающая функцию
-// бррр. запутался. пересмотрю позже.
-
-// Решение преподавателя
-// function user() {
-//     const userObj = userInfo;
-//     return function() {
-//         return userObj;
-//     }
-// }
-// Данный (выше) код делает ссылку на объект. все изменения проиходят в одном объекте
-// Чтобы этого избежать, необходимо каждый раз создавать новый объект:
-function user() {
-    const userObj = {
-        balanse: 0,
-        ooperations: 0,
-        increse(sum) {
-            this.balanse += sum;
-            this.ooperations ++;
-        }
-    }
-    return function() {
-        return userObj;
-    }
-}
-
-
-const user1 = user();
-
-user1().increse(100);
-user1().increse(100);
-console.log(user1());
-
-const user2 = user();
-
-user2().increse(100);
-console.log(user2());
-
+// заполняем текстовое поле input значением Text:
+document.querySelector('.input').value = 'Text';
