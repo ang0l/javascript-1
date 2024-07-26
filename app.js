@@ -1,7 +1,7 @@
 /**
  * Angol. 2024.07.26
  * DOM
- * Обработка событий клавиатуры (117)
+ * Работа со стилями и классами (118)
  */
 
 'use strict';
@@ -14,23 +14,29 @@ function submitForm() {
 
     document.querySelector('.panel').innerText = input;
     document.querySelector('.input').value = '';
+
+    // вариант работы со стилями:
+    // вариант плох тем, что необходимо руками редактирвать каждое свойство
+    // document.querySelector('.notification').style.display = 'block';
+
+    // вариант работы с классами:
+    // добавляем класс
+    // document.querySelector('.notification').classList.add('notification_active')
+    // точка перед классом нужна в querySelector
+    // и  не нужна при добавлении класса, 
+    // т.к. мы добавляем непосредственно конкретное наименование класса в список добовления
+    // через запятую
+
+    // удаляем класс
+    // добавляем конкретныее наименования классов в список удаления, через запятую.
+    // точка также не нужна
+    document.querySelector('.notification').classList.remove('notification_hidden')
+
+    console.log();
 }
 
-function changeClick(e) {
+function inputChanged(e) {
     if (e.code == 'Enter') {
         submitForm();
     }
 }
-
-// вышенаписанный код на много чище ниженаписанного
-// внизу хоть и написано какие селекторы затрагиваются,
-// но их видно в HTML событиями
-// и их можно посмотреть провалившись в app.js
-
-// document.querySelector('.input').addEventListener('keydown', (e) => {
-//     // console.log(e);
-//     if (e.code == 'Enter') {
-//         // console.log('Enter');
-//         submitForm();
-//     }
-// })
