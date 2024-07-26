@@ -15,12 +15,6 @@
     display: block;
 }
 
-/* 
-.notification_active {
-    display: block;
-}
-*/
-
 .notification_hidden {
     display: none;
 }
