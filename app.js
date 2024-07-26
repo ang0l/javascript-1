@@ -1,20 +1,32 @@
 /**
  * Angol. 2024.07.24
  * Управление this
- * IIFE (111)
+ * Замыкания (112)
  */
 
 'use strict';
 
-function init() {
-    console.log('Start');
+function changeBalance() {
+    let balance = 0;
+    let key = 'abc';
+    return function(sum) {
+        balance += sum;
+        key = 'cba';
+        console.log(`Баланс: ${balance}`);
+    }
 }
-init();
-init(); // всторой запуск функции. Плохо - если это лишнее подключение к БД... и т.д.
 
-// функция без имени, заключенная в круглые скобки запускается сразу за счет скобок
-// сразу после нее. больше ее запустить не возможно.
-(function() {
-    console.log('Start IIFE');
-    const a = 1;
-})();
+const change = changeBalance();
+
+change(100); // 100
+change(-50); // 50
+change(200); // 250
+
+console.dir(change);
+
+
+const change2 = changeBalance();
+
+change2(100); // 100
+
+console.dir(change2);
