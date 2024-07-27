@@ -1,7 +1,9 @@
 /**
- * Angol. 2024.07.26
+ * Angol. 2024.07.27
  * DOM
- * Добавление html на лету (121)
+ * Local storage (122)
+ * Хранение данных
+ * Данная лекция относится не к DOM, а именно к Local storage
  */
 
 'use strict';
@@ -25,14 +27,18 @@ function inputChanged(e) {
     }
 }
 
-const panelText = 'Панель';
-const panelClass = 'button';
-const newElement = document.createElement('div');
+// сохраняем объекты в локал стораж
+localStorage.setItem('token', 'sfgsdkf'); // положим туда строку
+localStorage.setItem('token1', 1); // положим туда число
+localStorage.setItem('token1', true); // перезапишем там булево. запишется строкой
+// при попытке положить в локал стораж один и тот же объект, он перезапишется.
+// все что мы кладем в локал стораж, преобразовывается в строку
 
-newElement.classList.add('panel');
-newElement.setAttribute('user-id', 1);
-// newElement.innerText = 'Кнопка'; // положим туда не innerText
-// newElement.innerHTML = `<div>${panelText}</div>`;
-newElement.innerHTML = `<button class=${panelClass}>${panelText}</button>`;
+// получаем объекты из локал стораж
+const token1 = localStorage.getItem('token1')
+console.log(`${token1} - ${typeof token1}`); // получаем булево значение строкой
 
-document.querySelector('.test').appendChild(newElement);
+localStorage.removeItem('token1'); // удалили объект из локал стораж
+localStorage.clear(); // очистили локал стораж
+// аккуратно с очисткой локал стораж. там могут быть данные сторонних скриптов
+// например яндекс.метрики или goole аналитики...
