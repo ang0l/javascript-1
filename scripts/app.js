@@ -1,7 +1,7 @@
 /**
  * Angol. 2024.07.28
  * Проект "Трекер привычек"
- * Работа меню (130)
+ * Рендер шапки (131)
  */
 
 'use strict';
@@ -11,8 +11,13 @@ const HABBIT_KEY = 'HABBIT_KEY';
 
 // <page> //
 const page = {
-    menu: document.querySelector('.menu__list')
-}
+    menu: document.querySelector('.menu__list'),
+    header: {
+        h1: document.querySelector('.h1'),
+        progressPercent: document.querySelector('.progress__percent'),
+        pregressCoverBar: document.querySelector('.progress__cover-bar'),
+    },
+};
 
 // <utils> //
 
@@ -62,9 +67,22 @@ function rerenderMenu(acitveHabbit) {
     }
 }
 
+function rerenderHead(acitveHabbit) {
+    if (!acitveHabbit) {
+        return;
+    }
+    page.header.h1.innerText = acitveHabbit.name;
+    const progress = acitveHabbit.days.length / acitveHabbit.target > 1
+        ? 100
+        : acitveHabbit.days.length / acitveHabbit.target * 100;
+    page.header.progressPercent.innerText = progress.toFixed(0) + '%';
+    page.header.pregressCoverBar.setAttribute('style', `width: ${progress}%;`)
+}
+
 function rerender(acitveHabbitId) {
     const acitveHabbit = habbits.find(habbit => habbit.id === acitveHabbitId);
     rerenderMenu(acitveHabbit);
+    rerenderHead(acitveHabbit);
 }
 
 // <init> //
