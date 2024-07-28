@@ -6,6 +6,7 @@ body {
 	font-family: 'Comfortaa', cursive;
 	margin: 0;
 	background-color: #F3F6FD;
+    font-weight: 400;
 }
 
 .app {
@@ -73,4 +74,152 @@ body {
 
 .menu__add:hover {
 	background: #EFF2FF;
+}
+
+.content {
+    min-width: 900px;
+    padding: 45px;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+h1 {
+    font-size: 30px;
+    line-height: 33px;
+    color: #000;
+}
+
+.progress {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    min-width: 235px;
+}
+
+.progress__text {
+    display: flex;
+    justify-content: space-between;
+}
+
+.progress__name {
+    font-size: 14px;
+    line-height: 16px;
+    color: #232360;
+}
+
+.progress_precent {
+    font-size: 12px;
+    line-height: 13px;
+    color: #768396;
+}
+
+.progress__bar {
+    width: 100%;
+    background: #e6e9ed;
+    border-radius: 4px;
+    height: 5px;
+    position: relative;
+}
+
+.progress__corer-bar {
+    position: absolute;
+    width: 80%;
+    height: 5px;
+    border-radius: 4px;
+    background: #5051F9;
+}
+
+.habbit {
+    background: #fff;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+main {
+    margin-top: 30px;
+}
+
+.habbit__day {
+    background: #f8faff;
+    border-radius: 10px 0 0 10px;
+    border-right: 1px solid #e7e8f8;
+    font-size: 14px;
+    line-height: 16px;
+    padding: 20px 40px;
+    min-width: 150px;
+}
+
+.habbit__comment {
+    font-size: 16px;
+    line-height: 18px;
+    padding: 20px 25px;
+}
+
+.habbit__delete {
+    margin-left: auto;
+    margin-right: 10px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    padding: 2px;
+}
+
+.habbit__delete:hover {
+    background: #EFF2FF;
+}
+
+input {
+    background:  #fff;
+    border: 1px solid #e7e8f8;
+    border-radius: 9px;
+    padding: 12px;
+    font-family: Comfortaa;
+    flex: 1;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 16px;
+}
+
+input::placeholder {
+    color: #8899a0;
+}
+
+.habbit__form {
+    display: flex;
+    gap: 15px;
+    width: 100%;
+    padding: 0 10px 25px;
+    position: relative;
+}
+
+.input_icon{
+    padding-left: 40px;
+}
+
+.input__icon {
+    position: absolute;
+    top: 10px;
+    left: 45px;
+}
+
+.button {
+    background: #edecfe;
+    border-radius: 9px;
+    border: none;
+    font-size: 13px;
+    line-height: 14px;
+    color: #5051f9;
+    padding: 14px 30px;
+    cursor: pointer;
+}
+
+.button:hover {
+    background: #dcdaff;
 }
