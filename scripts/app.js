@@ -1,7 +1,7 @@
 /**
- * Angol. 2024.07.28
+ * Angol. 2024.07.31
  * Проект "Трекер привычек"
- * Рендер шапки (131)
+ * Упражнение - рендер дней (132)
  */
 
 'use strict';
@@ -17,6 +17,10 @@ const page = {
         progressPercent: document.querySelector('.progress__percent'),
         pregressCoverBar: document.querySelector('.progress__cover-bar'),
     },
+    content: {
+        daysContent: document.getElementById('days'),
+        nexDay: document.querySelector('.habbit__day'),
+    }
 };
 
 // <utils> //
@@ -38,11 +42,7 @@ function saveData() {
 
 // <render> //
 
-function rerenderMenu(acitveHabbit) {
-    if (!acitveHabbit) {
-        return;
-    }
-
+function rerenderMenu(activeHabbit) {
     for (const habbit of habbits) {
         const existed = document.querySelector(`[menu-habbit-id="${habbit.id}"]`);
         if (!existed) {
@@ -52,14 +52,14 @@ function rerenderMenu(acitveHabbit) {
             element.classList.add('menu__item');
             element.addEventListener('click', () => rerender(habbit.id));
             element.innerHTML = `<img src="./images/${habbit.icon}.svg" alt="${habbit.name}">`;
-            if (acitveHabbit.id === habbit.id) {
+            if (activeHabbit.id === habbit.id) {
                 element.classList.add('menu__item_active');
             }
             page.menu.appendChild(element);
 
             continue;
         }
-        if (acitveHabbit.id === habbit.id) {
+        if (activeHabbit.id === habbit.id) {
             existed.classList.add('menu__item_active');
         } else {
             existed.classList.remove('menu__item_active');
@@ -67,22 +67,44 @@ function rerenderMenu(acitveHabbit) {
     }
 }
 
-function rerenderHead(acitveHabbit) {
-    if (!acitveHabbit) {
-        return;
-    }
-    page.header.h1.innerText = acitveHabbit.name;
-    const progress = acitveHabbit.days.length / acitveHabbit.target > 1
+function rerenderHead(activeHabbit) {
+    page.header.h1.innerText = activeHabbit.name;
+    const progress = activeHabbit.days.length / activeHabbit.target > 1
         ? 100
-        : acitveHabbit.days.length / acitveHabbit.target * 100;
+        : activeHabbit.days.length / activeHabbit.target * 100;
     page.header.progressPercent.innerText = progress.toFixed(0) + '%';
     page.header.pregressCoverBar.setAttribute('style', `width: ${progress}%;`)
 }
 
-function rerender(acitveHabbitId) {
-    const acitveHabbit = habbits.find(habbit => habbit.id === acitveHabbitId);
-    rerenderMenu(acitveHabbit);
-    rerenderHead(acitveHabbit);
+function rerenderContent(activeHabbit) {
+    page.content.daysContent.innerHTML = ''; // очищаем все дни
+
+    // пересоздаем дни
+    for (const index in activeHabbit.days) {
+        const element = document.createElement('div');
+        element.classList.add('habbit');
+        element.innerHTML = `<div class="habbit__day">День ${Number(index) + 1}</div>
+                            <div class="habbit__comment">
+                                ${activeHabbit.days[index].comment}
+                            </div>
+                            <button class="habbit__delete">
+                                <img src="/images/delete.svg" alt="Удалить день ${Number(index) + 1}">
+                            </button>`;
+        page.content.daysContent.appendChild(element);
+    }
+    page.content.nexDay.innerHTML = `День ${activeHabbit.days.length + 1}`; // следующий день
+
+}
+
+function rerender(activeHabbitId) {
+    const activeHabbit = habbits.find(habbit => habbit.id === activeHabbitId);
+    if (!activeHabbit) {
+        return;
+    }
+
+    rerenderMenu(activeHabbit);
+    rerenderHead(activeHabbit);
+    rerenderContent(activeHabbit);
 }
 
 // <init> //
