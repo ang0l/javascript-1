@@ -1,12 +1,14 @@
 /**
  * Angol. 2024.08.01
  * Проект "Трекер привычек"
- * FormData API (133)
+ * Добавление дня (134)
  */
 
 'use strict';
 
 let habbits = [];
+let globalActivHabbitId;
+
 const HABBIT_KEY = 'HABBIT_KEY';
 
 // <page> //
@@ -97,6 +99,7 @@ function rerenderContent(activeHabbit) {
 }
 
 function rerender(activeHabbitId) {
+    globalActivHabbitId = activeHabbitId;
     const activeHabbit = habbits.find(habbit => habbit.id === activeHabbitId);
     if (!activeHabbit) {
         return;
@@ -112,9 +115,34 @@ function addDays(event) {
     // по дефолту сабмит отправляет данные на бэк и перезагружает страницу.
     // нам такое поведение не нужно.
     event.preventDefault(); // игнорируем дефолтное поведение
-    const data = new FormData(event.target); // создаем объект данных формы
-    console.log(data.get('comment')); // получаем данные формы из поля с именем comment (input)
+    const form = event.target;
+    const data = new FormData(form); // создаем объект данных формы
+    // console.log(data.get('comment')); // получаем данные формы из поля с именем comment (input)
     // console.log(data.getAll('comment')); // получаем массив из полей с таким именем (если вдруг их несколько)
+
+    const comment = data.get('comment');
+    form['comment'].classList.remove('error'); // удаляем класс error у элемента формы с именем comment
+    if (!comment) {
+        // комментарий не введен:
+        // console.log(form); // html-код формы. из этой формы нужно вытащить поле input
+        form['comment'].classList.add('error'); // достаем из формы элемент с именем comment и добавляем ему класс error
+    }
+    // console.log(globalActivHabbitId); // проверим с какой привычкой сейчас работаем
+
+    // добавляем коммент к дню (модифицируем массив комментариев)
+    habbits = habbits.map(habbit => {
+        if (habbit.id === globalActivHabbitId) {
+            // найдена привычка в которую мы сейчас комментируем
+            return {
+                ...habbit,
+                days: habbit.days.concat([{ comment }])
+            };
+        }
+        return habbit;
+    })
+    form['comment'].value = '';
+    rerender(globalActivHabbitId);
+    saveData();
 }
 
 // <init> //
