@@ -1,7 +1,7 @@
 /**
- * Angol. 2024.07.31
+ * Angol. 2024.08.01
  * Проект "Трекер привычек"
- * Упражнение - рендер дней (132)
+ * FormData API (133)
  */
 
 'use strict';
@@ -105,6 +105,16 @@ function rerender(activeHabbitId) {
     rerenderMenu(activeHabbit);
     rerenderHead(activeHabbit);
     rerenderContent(activeHabbit);
+}
+
+// <work with days> //
+function addDays(event) {
+    // по дефолту сабмит отправляет данные на бэк и перезагружает страницу.
+    // нам такое поведение не нужно.
+    event.preventDefault(); // игнорируем дефолтное поведение
+    const data = new FormData(event.target); // создаем объект данных формы
+    console.log(data.get('comment')); // получаем данные формы из поля с именем comment (input)
+    // console.log(data.getAll('comment')); // получаем массив из полей с таким именем (если вдруг их несколько)
 }
 
 // <init> //
